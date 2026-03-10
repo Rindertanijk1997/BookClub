@@ -1,0 +1,42 @@
+@page
+@model Bookclub.Pages.Clubs.IndexModel
+@{
+    ViewData["Title"] = "Mina klubbar";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Mina bokklubbar</h1>
+        <div class="d-flex gap-2">
+            <a href="/Clubs/Create" class="btn btn-primary">+ Skapa klubb</a>
+            <a href="/Clubs/Join" class="btn btn-outline-secondary">Gå med i klubb</a>
+        </div>
+    </div>
+
+    @if (!Model.Clubs.Any())
+    {
+        <div class="alert alert-light border">
+            Du är inte med i någon klubb än. Skapa en eller gå med via en kod!
+        </div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+            @foreach (var club in Model.Clubs)
+            {
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@club.Name</h5>
+                            <p class="card-text text-muted">@club.Description</p>
+                            <small class="text-muted">Kod: <strong>@club.JoinCode</strong></small>
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <a href="/Clubs/Details/@club.Id" class="btn btn-sm btn-outline-primary">Öppna</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

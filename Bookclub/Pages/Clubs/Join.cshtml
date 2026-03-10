@@ -1,0 +1,21 @@
+@page
+@model Bookclub.Pages.Clubs.JoinModel
+@{
+    ViewData["Title"] = "Gå med i klubb";
+}
+<div class="container mt-4" style="max-width:480px;">
+    <h1 class="mb-4">Gå med i en klubb</h1>
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="alert alert-danger">@Model.Error</div>
+    }
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label asp-for="JoinCode" class="form-label">Klubbkod</label>
+            <input asp-for="JoinCode" class="form-control" placeholder="T.ex. AB12CD34" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Gå med</button>
+        <a href="/Clubs" class="btn btn-outline-secondary w-100 mt-2">Avbryt</a>
+    </form>
+</div>

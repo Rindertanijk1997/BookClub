@@ -1,31 +1,91 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+:root {
+    --bc-green: #2c5f4a;
+    --bc-green-dark: #1a3d2e;
+    --bc-bg: #f5f3ef;
+    --bc-surface: #ffffff;
+    --bc-text: #1a1a1a;
+    --bc-muted: #6b7280;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: 'Inter', sans-serif;
+    background: var(--bc-bg);
+    color: var(--bc-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* NAVBAR */
+.bc-navbar {
+    background: var(--bc-green-dark);
+    padding: 0.75rem 0;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.bc-brand {
+    font-family: 'Playfair Display', serif;
+    color: #ffffff !important;
+    font-size: 1.4rem;
+}
+
+.bc-navbar .nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+    .bc-navbar .nav-link:hover {
+        color: #ffffff !important;
+    }
+
+.navbar-toggler {
+    border-color: rgba(255,255,255,0.3);
+}
+
+/* MAIN */
+.bc-main {
+    flex: 1;
+    padding: 2rem 0;
+}
+
+/* FOOTER */
+.bc-footer {
+    background: var(--bc-green-dark);
+    color: rgba(255,255,255,0.6);
+    padding: 1rem 0;
+    margin-top: auto;
+}
+
+/* CARDS */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+    .card:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        transition: box-shadow 0.2s;
+    }
+
+/* BUTTONS */
+.btn-primary {
+    background: var(--bc-green);
+    border-color: var(--bc-green);
+}
+
+    .btn-primary:hover {
+        background: var(--bc-green-dark);
+        border-color: var(--bc-green-dark);
+    }
+
+/* BADGES */
+.badge.bg-secondary {
+    background: var(--bc-green) !important;
+}
+
+/* FORMS */
+.form-control:focus, .form-select:focus {
+    border-color: var(--bc-green);
+    box-shadow: 0 0 0 0.2rem rgba(44,95,74,0.2);
 }

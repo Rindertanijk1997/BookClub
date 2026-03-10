@@ -1,0 +1,56 @@
+﻿@page "/Clubs/Details/{id:int}"
+@model Bookclub.Pages.Clubs.DetailsModel
+@{
+    ViewData["Title"] = Model.Club?.Name ?? "Klubb";
+}
+
+<div class="container mt-4">
+    <a href="/Clubs" class="btn btn-outline-secondary mb-3">← Tillbaka</a>
+
+    @if (Model.Club is null)
+    {
+        <div class="alert alert-danger">Klubben hittades inte.</div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between align-items-start mb-4">
+            <div>
+                <h1>@Model.Club.Name</h1>
+                <p class="text-muted">@Model.Club.Description</p>
+                <small class="text-muted">Inbjudningskod: <strong>@Model.Club.JoinCode</strong></small>
+            </div>
+            <a href="/Clubs/AddBook/@Model.Club.Id" class="btn btn-primary">+ Lägg till bok</a>
+        </div>
+
+        @if (!Model.Club.ClubBooks.Any())
+        {
+            <div class="alert alert-light border">
+                Inga böcker tillagda än. Lägg till den första!
+            </div>
+        }
+        else
+        {
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+                @foreach (var cb in Model.Club.ClubBooks)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(cb.Book?.CoverUrl))
+                            {
+                                <img src="@cb.Book.CoverUrl" class="card-img-top" style="height:200px; object-fit:cover;" />
+                            }
+                            <div class="card-body">
+                                <h5 class="card-title">@cb.Book?.Title</h5>
+                                <p class="card-text text-muted">@cb.Book?.Author</p>
+                                <span class="badge bg-secondary">@cb.Status</span>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="/Clubs/BookDetails/@cb.Id" class="btn btn-sm btn-outline-primary">Diskutera</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+</div>

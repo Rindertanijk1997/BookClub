@@ -1,0 +1,27 @@
+@page
+@model Bookclub.Pages.Clubs.CreateModel
+@{
+    ViewData["Title"] = "Skapa klubb";
+}
+
+<div class="container mt-4" style="max-width:560px;">
+    <h1 class="mb-4">Skapa en bokklubb</h1>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Club.Name" class="form-label">Namn</label>
+            <input asp-for="Club.Name" class="form-control" placeholder="Klubbens namn..." />
+            <span asp-validation-for="Club.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Club.Description" class="form-label">Beskrivning</label>
+            <textarea asp-for="Club.Description" class="form-control" rows="3" placeholder="Beskriv klubben..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Skapa klubb</button>
+        <a href="/Clubs" class="btn btn-outline-secondary w-100 mt-2">Avbryt</a>
+    </form>
+</div>

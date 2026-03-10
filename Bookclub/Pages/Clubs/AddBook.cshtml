@@ -1,0 +1,40 @@
+﻿@page "/Clubs/AddBook/{clubId:int}"
+@model Bookclub.Pages.Clubs.AddBookModel
+@{
+    ViewData["Title"] = "Lägg till bok";
+}
+
+<div class="container mt-4" style="max-width:560px;">
+    <a href="/Clubs/Details/@Model.ClubId" class="btn btn-outline-secondary mb-3">← Tillbaka</a>
+    <h1 class="mb-4">Lägg till bok</h1>
+
+    @if (!string.IsNullOrEmpty(Model.Error))
+    {
+        <div class="alert alert-danger">@Model.Error</div>
+    }
+
+    <form method="post">
+        <input type="hidden" asp-for="ClubId" />
+
+        <div class="mb-3">
+            <label asp-for="Title" class="form-label">Titel</label>
+            <input asp-for="Title" class="form-control" placeholder="Bokens titel..." />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Author" class="form-label">Författare</label>
+            <input asp-for="Author" class="form-control" placeholder="Författarens namn..." />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label">Status</label>
+            <select asp-for="Status" class="form-select">
+                <option value="Vill läsa">Vill läsa</option>
+                <option value="Läser">Läser</option>
+                <option value="Klar">Klar</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Lägg till</button>
+    </form>
+</div>
